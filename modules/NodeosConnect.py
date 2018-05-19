@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-This Class creates connection to EOS nodeos API RPC and the Wallet API RPC.
-Only to methods are implemented GET and POST.
+.. module:: NodeosConnect
+   :synopsis: This Class creates connection to EOS nodeos API RPC and the Wallet API RPC.
+              Only to methods are implemented GET and POST.
+.. author:: Merouane Benthameur <merouane.benth@gmail.com>
 """
 
 import requests
@@ -30,7 +32,10 @@ class RequestHandlerAPI:
         :param kwargs: json: arguments auth, headers, data ..etc.
         :return: response object
         """
-        return self.session.get(self.base_url + path, verify=self.ssl_verify, **kwargs)
+        try:
+            return self.session.get(self.base_url + path, verify=self.ssl_verify, **kwargs)
+        except requests.exceptions.RequestException as e:
+            raise e
 
     def post(self, path, **kwargs):
         """
@@ -39,7 +44,10 @@ class RequestHandlerAPI:
         :param kwargs: json: arguments auth, headers, data ..etc.
         :return: response object
         """
-        return self.session.post(self.base_url + path, verify=self.ssl_verify, **kwargs)
+        try:
+            return self.session.post(self.base_url + path, verify=self.ssl_verify, **kwargs)
+        except requests.exceptions.RequestException as e:
+            raise e
 
     @staticmethod
     def __set_session_attr(source, destination):

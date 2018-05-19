@@ -3,7 +3,7 @@ this a fake main. just to test the code.
 
 Note: this file will be deleted.
 """
-from EOSChainConnect import RequestHandlerAPI
+from NodeosConnect import RequestHandlerAPI
 from EOSChainApi import ChainAPI
 
 
