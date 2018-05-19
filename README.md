@@ -20,7 +20,7 @@ connection  = RequestHandlerAPI(base_url='http://nodeos-server:8888', headers={"
 chainapi = ChainAPI(connection)
 print(chainapi.get_info().json())
 ```
-######results
+###### results
 
 ~~~
 {
@@ -35,18 +35,18 @@ print(chainapi.get_info().json())
 }
 ~~~
 
-####Authors
+#### Authors
 
 - [@Merouane_Benth](https://twitter.com/Merouane_Benth)
 
-####License
+#### License
 This project is licensed under the MIT License - see the LICENSE file for details
 
 ##Official documentation
  - [RPC Interface EOS](https://eosio.github.io/eos/group__eosiorpc.html#v1walletlock)
  - [Library documentation]()
 
-###Contributing
+### Contributing
 
 - Fork it (https://github.com/EvaCoop/pyeos_client.git)
 - Create your feature branch (git checkout -b feature/fooBar)
