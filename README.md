@@ -42,7 +42,7 @@ print(chainapi.get_info().json())
 #### License
 This project is licensed under the MIT License - see the LICENSE file for details
 
-##Official documentation
+## Official documentation
  - [RPC Interface EOS](https://eosio.github.io/eos/group__eosiorpc.html#v1walletlock)
  - [Library documentation]()
 
