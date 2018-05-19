@@ -1,0 +1,401 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>EOSChainApi &#8212; pyeos_client 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for EOSChainApi</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: EOSChainApi</span>
+<span class="sd">   :synopsis: A basic wrapper around the EOS Chain API..</span>
+<span class="sd">.. author:: Merouane Benthameur &lt;merouane.benth@gmail.com&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="ChainAPI"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI">[docs]</a><span class="k">class</span> <span class="nc">ChainAPI</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; wrapper for EOS Chain API&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection_session</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        constructor  of the ChainAPI</span>
+<span class="sd">        :param connection_session: session request object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">connection_session</span>
+
+<div class="viewcode-block" id="ChainAPI.get_info"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.get_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get latest information related to a node.</span>
+
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.get_info()</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;server_version&quot;: &quot;b2eb1667&quot;,</span>
+<span class="sd">          &quot;head_block_num&quot;: 259590,</span>
+<span class="sd">          &quot;last_irreversible_block_num&quot;: 259573,</span>
+<span class="sd">          &quot;head_block_id&quot;: &quot;0003f60677f3707f0704f16177bf5f007ebd45eb6efbb749f&quot;,</span>
+<span class="sd">          &quot;head_block_time&quot;: &quot;2017-12-10T17:05:36&quot;,</span>
+<span class="sd">          &quot;head_block_producer&quot;: &quot;initp&quot;,</span>
+<span class="sd">          &quot;recent_slots&quot;: &quot;1111111111111111111111111111111111111111111111111&quot;,</span>
+<span class="sd">          &quot;participation_rate&quot;: &quot;1.00000000000000000&quot;</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/get_info&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChainAPI.get_block"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.get_block">[docs]</a>    <span class="k">def</span> <span class="nf">get_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get information related to a block.</span>
+
+<span class="sd">        :param block_id: (str) the format must be a string of a json</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.get_block(block_id=&#39;{&quot;block_num_or_id&quot;:5}&#39;)</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;previous&quot;: &quot;0000000445a9f27898383fd7de32835d5d6a978cc14ce40d9f3jb&quot;,</span>
+<span class="sd">          &quot;timestamp&quot;: &quot;2017-07-18T20:16:36&quot;,</span>
+<span class="sd">          &quot;transaction_merkle_root&quot;: &quot;0000000000000000000000000000000000000&quot;,</span>
+<span class="sd">          &quot;producer&quot;: &quot;initf&quot;,</span>
+<span class="sd">          &quot;producer_changes&quot;: [ ],</span>
+<span class="sd">          &quot;producer_signature&quot;: &quot;204cb94b3186c3b4a7f88be4e9db9f8af2ffdb7ef9f&quot;,</span>
+<span class="sd">          &quot;cycles&quot;: [ ],</span>
+<span class="sd">          &quot;id&quot;:&quot;000000050c0175cbf218a70131ddc3c3fab8b6e954edef77e0bfe7c36b599b1d&quot;,</span>
+<span class="sd">          &quot;block_num&quot;:5,</span>
+<span class="sd">          &quot;ref_block_prefix&quot;:27728114</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/get_block&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">block_id</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChainAPI.get_account"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.get_account">[docs]</a>    <span class="k">def</span> <span class="nf">get_account</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get information related to an account.</span>
+
+<span class="sd">        :param account_name: (str) the format must be a string of a json</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.get_account(account_name=&#39;{&quot;account_name&quot;:&quot;inita&quot;}&#39;)</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;name&quot;: &quot;inita&quot;,</span>
+<span class="sd">          &quot;eos_balance&quot;: &quot;999998.9574 EOS&quot;,</span>
+<span class="sd">          &quot;staked_balance&quot;: &quot;0.0000 EOS&quot;,</span>
+<span class="sd">          &quot;unstaking_balance&quot;: &quot;0.0000 EOS&quot;,</span>
+<span class="sd">          &quot;last_unstaking_time&quot;: &quot;2106-02-07T06:28:15&quot;,</span>
+<span class="sd">          &quot;permissions&quot;: [</span>
+<span class="sd">            {</span>
+<span class="sd">              &quot;name&quot;: &quot;active&quot;,</span>
+<span class="sd">              &quot;parent&quot;: &quot;owner&quot;,</span>
+<span class="sd">              &quot;required_auth&quot;: {</span>
+<span class="sd">                &quot;threshold&quot;: 1,</span>
+<span class="sd">                &quot;keys&quot;: [</span>
+<span class="sd">                  {</span>
+<span class="sd">                    &quot;key&quot;: &quot;EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5SoV&quot;,</span>
+<span class="sd">                    &quot;weight&quot;: 1</span>
+<span class="sd">                  }</span>
+<span class="sd">                ],</span>
+<span class="sd">                &quot;accounts&quot;: []</span>
+<span class="sd">              }</span>
+<span class="sd">            },</span>
+<span class="sd">            {</span>
+<span class="sd">              &quot;name&quot;: &quot;owner&quot;,</span>
+<span class="sd">              &quot;parent&quot;: &quot;owner&quot;,</span>
+<span class="sd">              &quot;required_auth&quot;: {</span>
+<span class="sd">                &quot;threshold&quot;: 1,</span>
+<span class="sd">                &quot;keys&quot;: [</span>
+<span class="sd">                  {</span>
+<span class="sd">                    &quot;key&quot;: &quot;EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So5CV&quot;,</span>
+<span class="sd">                    &quot;weight&quot;: 1</span>
+<span class="sd">                  }</span>
+<span class="sd">                ],</span>
+<span class="sd">                &quot;accounts&quot;: []</span>
+<span class="sd">              }</span>
+<span class="sd">            }</span>
+<span class="sd">          ]</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/get_account&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">account_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChainAPI.get_code"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.get_code">[docs]</a>    <span class="k">def</span> <span class="nf">get_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetch smart contract code.</span>
+
+<span class="sd">        :param account_name: (str) the format must be a string of a json</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.get_code(account_name=&#39;{&quot;account_name&quot;:&quot;currency&quot;}&#39;)</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;name&quot;:&quot;currency&quot;,</span>
+<span class="sd">          &quot;code_hash&quot;:&quot;a1c8c84b4700c09c8edb83522237439e33cf01&quot;,</span>
+<span class="sd">          &quot;wast&quot;:&quot;(module(type $0 (func (param i64 i64 i32) (result i32)))...truncated&quot;,</span>
+<span class="sd">          &quot;abi&quot;: {</span>
+<span class="sd">          &quot;types&quot;: [{</span>
+<span class="sd">              &quot;new_type_name&quot;: &quot;account_name&quot;,</span>
+<span class="sd">              &quot;type&quot;: &quot;name&quot;</span>
+<span class="sd">            }</span>
+<span class="sd">          ],</span>
+<span class="sd">          &quot;structs&quot;: [{</span>
+<span class="sd">              &quot;name&quot;: &quot;transfer&quot;,</span>
+<span class="sd">              &quot;base&quot;: &quot;&quot;,</span>
+<span class="sd">              &quot;fields&quot;: [</span>
+<span class="sd">                {&quot;name&quot;:&quot;from&quot;, &quot;type&quot;:&quot;account_name&quot;},</span>
+<span class="sd">                {&quot;name&quot;:&quot;to&quot;, &quot;type&quot;:&quot;account_name&quot;},</span>
+<span class="sd">                {&quot;name&quot;:&quot;quantity&quot;, &quot;type&quot;:&quot;uint64&quot;}</span>
+<span class="sd">              ]</span>
+<span class="sd">            },{</span>
+<span class="sd">              &quot;name&quot;: &quot;account&quot;,</span>
+<span class="sd">              &quot;base&quot;: &quot;&quot;,</span>
+<span class="sd">              &quot;fields&quot;: [</span>
+<span class="sd">                {&quot;name&quot;:&quot;key&quot;, &quot;type&quot;:&quot;name&quot;},</span>
+<span class="sd">                {&quot;name&quot;:&quot;balance&quot;, &quot;type&quot;:&quot;uint64&quot;}</span>
+<span class="sd">              ]</span>
+<span class="sd">            }</span>
+<span class="sd">          ],</span>
+<span class="sd">          &quot;actions&quot;: [{</span>
+<span class="sd">              &quot;name&quot;: &quot;transfer&quot;,</span>
+<span class="sd">              &quot;type&quot;: &quot;transfer&quot;</span>
+<span class="sd">            }</span>
+<span class="sd">          ],</span>
+<span class="sd">          &quot;tables&quot;: [{</span>
+<span class="sd">              &quot;name&quot;: &quot;account&quot;,</span>
+<span class="sd">              &quot;type&quot;: &quot;account&quot;,</span>
+<span class="sd">              &quot;index_type&quot;: &quot;i64&quot;,</span>
+<span class="sd">              &quot;key_names&quot; : [&quot;key&quot;],</span>
+<span class="sd">              &quot;key_types&quot; : [&quot;name&quot;]</span>
+<span class="sd">            }</span>
+<span class="sd">          ]</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/get_code&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">account_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChainAPI.get_table_rows"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.get_table_rows">[docs]</a>    <span class="k">def</span> <span class="nf">get_table_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account_details</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetch smart contract data from an account.</span>
+
+<span class="sd">        :param account_details: (str) account details, the format</span>
+<span class="sd">        must be a string of a json</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.get_table_rows(account_details=&#39;{&quot;scope&quot;:&quot;inita&quot;,</span>
+<span class="sd">                &quot;code&quot;:&quot;currency&quot;, &quot;table&quot;:&quot;account&quot;,&quot;json&quot;: true}&#39;)</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;rows&quot;: [</span>
+<span class="sd">            {</span>
+<span class="sd">              &quot;account&quot;: &quot;account&quot;,</span>
+<span class="sd">              &quot;balance&quot;: 1000</span>
+<span class="sd">            }</span>
+<span class="sd">          ],</span>
+<span class="sd">          &quot;more&quot;: false</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/get_table_rows&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">account_details</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChainAPI.abi_json_to_bin"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.abi_json_to_bin">[docs]</a>    <span class="k">def</span> <span class="nf">abi_json_to_bin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Serialize json to binary hex. The resulting binary hex is usually</span>
+<span class="sd">        used for the data field in push_transaction.</span>
+
+<span class="sd">        :param data: (str) the format must be a string of a json</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.abi_json_to_bin(data=&#39;{&quot;code&quot;:&quot;currency&quot;,</span>
+<span class="sd">                &quot;action&quot;:&quot;transfer&quot;, &quot;args&quot;:{&quot;from&quot;:&quot;initb&quot;,</span>
+<span class="sd">                &quot;to&quot;:&quot;initc&quot;, &quot;quantity&quot;:1000}}&#39;)</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;binargs&quot;: &quot;000000008093dd74000000000094dd74e803000000000000&quot;,</span>
+<span class="sd">          &quot;required_scope&quot;: [],</span>
+<span class="sd">          &quot;required_auth&quot;: []</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/abi_json_to_bin&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChainAPI.abi_bin_to_json"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.abi_bin_to_json">[docs]</a>    <span class="k">def</span> <span class="nf">abi_bin_to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Serialize back binary hex to json.</span>
+
+<span class="sd">        :param data:  (str) the format must be a string of a json</span>
+<span class="sd">        :return:response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.abi_bin_to_json(data=&#39;{&quot;code&quot;:&quot;currency&quot;,</span>
+<span class="sd">                &quot;action&quot;:&quot;transfer&quot;, &quot;binargs&quot;:&quot;000000008093dd74000000000094dd74e803000000000000&quot;}&#39;)</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;args&quot;: {</span>
+<span class="sd">            &quot;from&quot;: &quot;initb&quot;,</span>
+<span class="sd">            &quot;to&quot;: &quot;initc&quot;,</span>
+<span class="sd">            &quot;quantity&quot;: 1000</span>
+<span class="sd">          },</span>
+<span class="sd">          &quot;required_scope&quot;: [],</span>
+<span class="sd">          &quot;required_auth&quot;: []</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/abi_bin_to_json&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChainAPI.push_transaction"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.push_transaction">[docs]</a>    <span class="k">def</span> <span class="nf">push_transaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method expects a transaction in JSON format and will</span>
+<span class="sd">        attempt to apply it to the blockchain,</span>
+
+<span class="sd">        :param transaction: (str) transaction, the format must be a</span>
+<span class="sd">        string of a json</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.push_transaction(transaction=&#39;{&quot;ref_block_num&quot;:&quot;100&quot;,&quot;ref_block_prefix&quot;:&quot;137469861&quot;,&quot;expiration&quot;:&quot;2017-09-25T06:28:49&quot;,&quot;scope&quot;:[&quot;initb&quot;,&quot;initc&quot;],&quot;actions&quot;:[{&quot;code&quot;:&quot;currency&quot;,&quot;type&quot;:&quot;transfer&quot;,&quot;recipients&quot;:[&quot;initb&quot;,&quot;initc&quot;],&quot;authorization&quot;:[{&quot;account&quot;:&quot;initb&quot;,&quot;permission&quot;:&quot;active&quot;}],&quot;data&quot;:&quot;000000000041934b000000008041934be803000000000000&quot;}],&quot;signatures&quot;:[],&quot;authorizations&quot;:[]}&#39;)</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;args&quot;: {</span>
+<span class="sd">            &quot;from&quot;: &quot;initb&quot;,</span>
+<span class="sd">            &quot;to&quot;: &quot;initc&quot;,</span>
+<span class="sd">            &quot;quantity&quot;: 1000</span>
+<span class="sd">          },</span>
+<span class="sd">          &quot;required_scope&quot;: [],</span>
+<span class="sd">          &quot;required_auth&quot;: []</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/push_transaction&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">transaction</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChainAPI.push_transactions"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.push_transactions">[docs]</a>    <span class="k">def</span> <span class="nf">push_transactions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transactions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method push multiple transactions at once.</span>
+
+<span class="sd">        :param transactions: (str) list of transactions, the format must be a</span>
+<span class="sd">        string of a list</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.push_transactions(transactions=&#39;[{&quot;ref_block_num&quot;:&quot;101&quot;,&quot;ref_block_prefix&quot;:&quot;4159312339&quot;,&quot;expiration&quot;:&quot;2017-09-25T06:28:49&quot;,&quot;scope&quot;:[&quot;initb&quot;,&quot;initc&quot;],&quot;actions&quot;:[{&quot;code&quot;:&quot;currency&quot;,&quot;type&quot;:&quot;transfer&quot;,&quot;recipients&quot;:[&quot;initb&quot;,&quot;initc&quot;],&quot;authorization&quot;:[{&quot;account&quot;:&quot;initb&quot;,&quot;permission&quot;:&quot;active&quot;}],&quot;data&quot;:&quot;000000000041934b000000008041934be803000000000000&quot;}],&quot;signatures&quot;:[],&quot;authorizations&quot;:[]}, {&quot;ref_block_num&quot;:&quot;101&quot;,&quot;ref_block_prefix&quot;:&quot;4159312339&quot;,&quot;expiration&quot;:&quot;2017-09-25T06:28:49&quot;,&quot;scope&quot;:[&quot;inita&quot;,&quot;initc&quot;],&quot;actions&quot;:[{&quot;code&quot;:&quot;currency&quot;,&quot;type&quot;:&quot;transfer&quot;,&quot;recipients&quot;:[&quot;inita&quot;,&quot;initc&quot;],&quot;authorization&quot;:[{&quot;account&quot;:&quot;inita&quot;,&quot;permission&quot;:&quot;active&quot;}],&quot;data&quot;:&quot;000000008040934b000000008041934be803000000000000&quot;}],&quot;signatures&quot;:[],&quot;authorizations&quot;:[]}]&#39;)</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;args&quot;: {</span>
+<span class="sd">            &quot;from&quot;: &quot;initb&quot;,</span>
+<span class="sd">            &quot;to&quot;: &quot;initc&quot;,</span>
+<span class="sd">            &quot;quantity&quot;: 1000</span>
+<span class="sd">          },</span>
+<span class="sd">          &quot;required_scope&quot;: [],</span>
+<span class="sd">          &quot;required_auth&quot;: []</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/push_transaction&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">transactions</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChainAPI.get_required_keys"><a class="viewcode-back" href="../scripts.html#EOSChainApi.ChainAPI.get_required_keys">[docs]</a>    <span class="k">def</span> <span class="nf">get_required_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get required keys to sign a transaction from list of your keys.</span>
+
+<span class="sd">        :param transaction_data: (str) transaction data with a list of keys,</span>
+<span class="sd">        the format must be a string of a json</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; ChainAPI.get_required_keys(transaction_data=&#39;{&quot;transaction&quot;: {&quot;ref_block_num&quot;:&quot;100&quot;,&quot;ref_block_prefix&quot;:&quot;137469861&quot;,&quot;expiration&quot;:&quot;2017-09-25T06:28:49&quot;,&quot;scope&quot;:[&quot;initb&quot;,&quot;initc&quot;],&quot;actions&quot;:[{&quot;code&quot;:&quot;currency&quot;,&quot;type&quot;:&quot;transfer&quot;,&quot;recipients&quot;:[&quot;initb&quot;,&quot;initc&quot;],&quot;authorization&quot;:[{&quot;account&quot;:&quot;initb&quot;,&quot;permission&quot;:&quot;active&quot;}],&quot;data&quot;:&quot;000000000041934b000000008041934be803000000000000&quot;}],&quot;signatures&quot;:[],&quot;authorizations&quot;:[]}, &quot;available_keys&quot;:[&quot;EOS4toFS3YXEQCkuuw1aqDLrtHim86Gz9u3hBdcBw5KNPZcursVHq&quot;,&quot;EOS7d9A3uLe6As66jzN8j44TXJUqJSK3bFjjEEqR4oTvNAB3iM9SA&quot;,&quot;EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;]}&#39;)</span>
+<span class="sd">         {</span>
+<span class="sd">          &quot;required_keys&quot;: [</span>
+<span class="sd">            &quot;EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;</span>
+<span class="sd">          ]</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/chain/get_required_keys&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">transaction_data</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Merouane Benthameur.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

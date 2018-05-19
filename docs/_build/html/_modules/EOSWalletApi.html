@@ -1,0 +1,300 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>EOSWalletApi &#8212; pyeos_client 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for EOSWalletApi</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: EOSWalletApi</span>
+<span class="sd">   :synopsis: A basic wrapper around the EOS Wallet API..</span>
+<span class="sd">.. author:: Merouane Benthameur &lt;merouane.benth@gmail.com&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="WalletAPI"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI">[docs]</a><span class="k">class</span> <span class="nc">WalletAPI</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;wrapper for EOS Wallet API&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection_session</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        constructor  of the WalletAPI</span>
+<span class="sd">        :param connection_session: session request object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">connection_session</span>
+
+<div class="viewcode-block" id="WalletAPI.wallet_create"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_create">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new wallet with the given name.</span>
+
+<span class="sd">        :param wallet_name: (str) name of the wallet to be created</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_create(wallet_name=&#39;&quot;default&quot;&#39;)</span>
+<span class="sd">        PW5KFWYKqvt63d4iNvedfDEPVZL227D3RQ1zpVFzuUwhMAJmRAYyX</span>
+
+<span class="sd">        This command will return the password that can be used to</span>
+<span class="sd">        unlock the wallet in the future</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/create&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_open"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_open">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Open an existing wallet of the given name.</span>
+
+<span class="sd">        :param wallet_name: (str) name of the wallet to be opened</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_open(wallet_name=&#39;&quot;default&quot;&#39;)</span>
+<span class="sd">        {}</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/open&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_lock"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_lock">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_lock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Lock a wallet of the given name</span>
+
+<span class="sd">        :param wallet_name: (str) name of the wallet to be opened</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_lock(wallet_name=&#39;&quot;default&quot;&#39;)</span>
+<span class="sd">        {}</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/lock&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_lock_all"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_lock_all">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_lock_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Lock all wallets.</span>
+
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_lock_all()</span>
+<span class="sd">        {}</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/lock_all&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_unlock"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_unlock">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_unlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name_passord</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Unlock a wallet with the given name and password</span>
+
+<span class="sd">        :param wallet_name_passord: (str) list with name and password</span>
+<span class="sd">        of the given wallet</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_unlock(wallet_name_passord=&#39;[&quot;default&quot;,</span>
+<span class="sd">               &quot;PW5KFWYKqvt63d4iNvedfDEPVZL227D3RQ1zpVFzuUwhMAJmRAYyX&quot;]&#39;)</span>
+<span class="sd">        {}</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/unlock&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name_passord</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_import_key"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_import_key">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_import_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name_privKey</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Import a private key to the wallet of the given name</span>
+
+<span class="sd">        :param wallet_name_privKey: (str) list that contains the wallet</span>
+<span class="sd">        name and private key</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_import_key(wallet_name_privKey=&#39;[&quot;default&quot;,</span>
+<span class="sd">               &quot;5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3&quot;]&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/import_key&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name_privKey</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_list"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_list">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List all wallets</span>
+
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_list()</span>
+<span class="sd">        [&quot;default *&quot;]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/list_wallets&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_list_keys"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_list_keys">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_list_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List all key pairs across all wallets</span>
+
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_list_keys()</span>
+<span class="sd">        [[&quot;EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;,&quot;5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3&quot;]]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/list_keys&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_get_public_keys"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_get_public_keys">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_get_public_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List all public keys across all wallets</span>
+
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_get_public_keys()</span>
+<span class="sd">        [&quot;EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/get_public_keys&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_set_timeout"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_set_timeout">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_set_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set wallet auto lock timeout (in seconds)</span>
+
+<span class="sd">        :param timeout: (str) timeout in seconds</span>
+<span class="sd">        :return: response object</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_set_timeout(timeout=&#39;10&#39;)</span>
+<span class="sd">        {}</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/set_timeout&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WalletAPI.wallet_sign_trx"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_sign_trx">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_sign_trx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction_data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sign transaction given an array of transaction, require</span>
+<span class="sd">        public keys, and chain id</span>
+
+<span class="sd">        :param transaction_data: (str) list of transaction json and  public key</span>
+<span class="sd">        :return: response key</span>
+
+<span class="sd">        :Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; WalletAPI.wallet_sign_trx(transaction_data=&#39;[{&quot;ref_block_num&quot;:21453,&quot;ref_block_prefix&quot;:3165644999,&quot;expiration&quot;:&quot;2017-12-08T10:28:49&quot;,&quot;scope&quot;:[&quot;initb&quot;,&quot;initc&quot;],&quot;read_scope&quot;:[],&quot;messages&quot;:[{&quot;code&quot;:&quot;currency&quot;,&quot;type&quot;:&quot;transfer&quot;,&quot;authorization&quot;:[{&quot;account&quot;:&quot;initb&quot;,&quot;permission&quot;:&quot;active&quot;}],&quot;data&quot;:&quot;000000008093dd74000000000094dd74e803000000000000&quot;}],&quot;signatures&quot;:[]},[&quot;EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV&quot;],&quot;&quot;]&#39;)</span>
+<span class="sd">        {</span>
+<span class="sd">          &quot;ref_block_num&quot;: 21453,</span>
+<span class="sd">          &quot;ref_block_prefix&quot;: 3165644999,</span>
+<span class="sd">          &quot;expiration&quot;: &quot;2017-12-08T10:28:49&quot;,</span>
+<span class="sd">          &quot;scope&quot;: [</span>
+<span class="sd">            &quot;initb&quot;,</span>
+<span class="sd">            &quot;initc&quot;</span>
+<span class="sd">          ],</span>
+<span class="sd">          &quot;read_scope&quot;: [],</span>
+<span class="sd">          &quot;messages&quot;: [</span>
+<span class="sd">            {</span>
+<span class="sd">              &quot;code&quot;: &quot;currency&quot;,</span>
+<span class="sd">              &quot;type&quot;: &quot;transfer&quot;,</span>
+<span class="sd">              &quot;authorization&quot;: [</span>
+<span class="sd">                {</span>
+<span class="sd">                  &quot;account&quot;: &quot;initb&quot;,</span>
+<span class="sd">                  &quot;permission&quot;: &quot;active&quot;</span>
+<span class="sd">                }</span>
+<span class="sd">              ],</span>
+<span class="sd">              &quot;data&quot;: &quot;000000008093dd74000000000094dd74e803000000000000&quot;</span>
+<span class="sd">            }</span>
+<span class="sd">          ],</span>
+<span class="sd">          &quot;signatures&quot;: [</span>
+<span class="sd">            &quot;1f393cc5ce6a6951fb53b11812345bcf14ffd978b07be386fd639eaf440bca7dca16b14833ec661ca0703d15e55a2a599a36d55ce78c4539433f6ce8bcee0158c3&quot;</span>
+<span class="sd">          ]</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/sign_transaction&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">transaction_data</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Merouane Benthameur.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
