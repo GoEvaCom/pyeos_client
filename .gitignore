@@ -1,4 +1,5 @@
 .idea/
 modules/__pycache__/
 __pycache__/
-
+dist/
+pyeos_client.egg-info/
