@@ -6,13 +6,13 @@ This library will allow you to easily interact with EOSIO node through REST API.
 
 ## Installation
 ~~~
- pip install pyeos-client
+ pip install pyeos_client
 ~~~
 
 ## Getting Started
 ```python
-from NodeosConnect import RequestHandlerAPI
-from EOSChainApi import ChainAPI
+from pyeos_client.NodeosConnect import RequestHandlerAPI
+from pyeos_client.EOSChainApi import ChainAPI
 
 
 
