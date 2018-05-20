@@ -10,7 +10,7 @@ Welcome to pyeos_client's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   pyeos_client.rst
+   pyeos_client
 
 Indices and tables
 ==================

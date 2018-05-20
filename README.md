@@ -1,5 +1,6 @@
 # pyeos_client
 
+[![Documentation Status](https://readthedocs.org/projects/pyeos-client/badge/?version=latest)](http://pyeos-client.readthedocs.io/en/latest/?badge=latest)
 
 This is a non official python library build around the eosd Chain & Wallet RPC API.
 This library will allow you to easily interact with EOSIO node through REST API.
