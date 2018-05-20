@@ -10,7 +10,7 @@ Welcome to pyeos_client's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   pyeos_client.rst
 
 Indices and tables
 ==================
@@ -18,4 +18,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-cat
