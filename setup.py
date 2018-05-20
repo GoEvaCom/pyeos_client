@@ -16,7 +16,7 @@ with open('LICENSE.md') as f:
 
 setup(
     name='pyeos_client',
-    version='0.1.6',
+    version='0.1.7',
     description='Wrapper for EOS RPC API',
     long_description=readme,
     author='Merouane Benthameur',

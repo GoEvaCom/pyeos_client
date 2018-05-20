@@ -6,7 +6,7 @@ This library will allow you to easily interact with EOSIO node through REST API.
 
 ## Installation
 ~~~
- pip install pyeos_client
+ pip install pyeos-client
 ~~~
 
 ## Getting Started
@@ -44,7 +44,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Official documentation
  - [RPC Interface EOS](https://eosio.github.io/eos/group__eosiorpc.html#v1walletlock)
- - [Library documentation]()
+ - [Library documentation](https://pyeos-client.readthedocs.io)
 
 ### Contributing
 
