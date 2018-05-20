@@ -11,12 +11,12 @@ from setuptools import setup, find_packages
 with open('README.md') as f:
     readme = f.read()
 
-with open('LICENSE') as f:
+with open('LICENSE.md') as f:
     license = f.read()
 
 setup(
     name='pyeos_client',
-    version='0.1.0',
+    version='0.1.6',
     description='Wrapper for EOS RPC API',
     long_description=readme,
     author='Merouane Benthameur',

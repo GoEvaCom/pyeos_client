@@ -8,13 +8,13 @@
 
 # -- Path setup --------------------------------------------------------------
 
-# If extensions (or scripts to document with autodoc) are in another directory,
+# If extensions (or pyeos_client to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
 import sys
-sys.path.append('/home/ubentme/Documents/personal/pyeos_client/scripts/')
+sys.path.append('/home/ubentme/Documents/personal/pyeos_client/pyeos_client/')
 
 
 # -- Project information -----------------------------------------------------

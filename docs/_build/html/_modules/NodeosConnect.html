@@ -42,10 +42,10 @@
 
 <span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">__version</span><span class="p">:</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">__version</span><span class="p">:</span> <span class="s2">&quot;0.1.6&quot;</span>
 
 
-<div class="viewcode-block" id="RequestHandlerAPI"><a class="viewcode-back" href="../scripts.html#NodeosConnect.RequestHandlerAPI">[docs]</a><span class="k">class</span> <span class="nc">RequestHandlerAPI</span><span class="p">:</span>
+<div class="viewcode-block" id="RequestHandlerAPI"><a class="viewcode-back" href="../pyeos_client.html#NodeosConnect.RequestHandlerAPI">[docs]</a><span class="k">class</span> <span class="nc">RequestHandlerAPI</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; a class to handle the http connection with the EOS node.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span>  <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -59,7 +59,7 @@
                     <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="n">arg</span><span class="p">),</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">arg</span><span class="p">])</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">arg</span><span class="p">])</span>
 
-<div class="viewcode-block" id="RequestHandlerAPI.get"><a class="viewcode-back" href="../scripts.html#NodeosConnect.RequestHandlerAPI.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="RequestHandlerAPI.get"><a class="viewcode-back" href="../pyeos_client.html#NodeosConnect.RequestHandlerAPI.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A GET Http method.</span>
 
@@ -74,7 +74,7 @@
         <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span></div>
 
-<div class="viewcode-block" id="RequestHandlerAPI.post"><a class="viewcode-back" href="../scripts.html#NodeosConnect.RequestHandlerAPI.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="RequestHandlerAPI.post"><a class="viewcode-back" href="../pyeos_client.html#NodeosConnect.RequestHandlerAPI.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A POST Http method.</span>
 

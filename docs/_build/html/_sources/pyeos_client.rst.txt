@@ -1,11 +1,11 @@
-scripts package
-===============
+pyeos\_client package
+=====================
 
 Submodules
 ----------
 
 EOSChainApi module
---------------------------
+--------------------------------
 
 .. automodule:: EOSChainApi
     :members:
@@ -13,7 +13,7 @@ EOSChainApi module
     :show-inheritance:
 
 EOSWalletApi module
----------------------------
+---------------------------------
 
 .. automodule:: EOSWalletApi
     :members:
@@ -21,7 +21,7 @@ EOSWalletApi module
     :show-inheritance:
 
 NodeosConnect module
-----------------------------
+----------------------------------
 
 .. automodule:: NodeosConnect
     :members:
@@ -32,7 +32,7 @@ NodeosConnect module
 Module contents
 ---------------
 
-.. automodule:: scripts
+.. automodule:: pyeos_client
     :members:
     :undoc-members:
     :show-inheritance:

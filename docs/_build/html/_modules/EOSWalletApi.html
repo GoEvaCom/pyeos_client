@@ -40,7 +40,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="WalletAPI"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI">[docs]</a><span class="k">class</span> <span class="nc">WalletAPI</span><span class="p">:</span>
+<div class="viewcode-block" id="WalletAPI"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI">[docs]</a><span class="k">class</span> <span class="nc">WalletAPI</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;wrapper for EOS Wallet API&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection_session</span><span class="p">):</span>
@@ -50,7 +50,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">connection_session</span>
 
-<div class="viewcode-block" id="WalletAPI.wallet_create"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_create">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_create"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_create">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new wallet with the given name.</span>
 
@@ -69,7 +69,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/create&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_open"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_open">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_open"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_open">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Open an existing wallet of the given name.</span>
 
@@ -85,7 +85,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/open&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_lock"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_lock">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_lock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_lock"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_lock">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_lock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Lock a wallet of the given name</span>
 
@@ -101,7 +101,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/lock&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_lock_all"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_lock_all">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_lock_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_lock_all"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_lock_all">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_lock_all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Lock all wallets.</span>
 
@@ -116,7 +116,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/lock_all&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_unlock"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_unlock">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_unlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name_passord</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_unlock"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_unlock">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_unlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name_passord</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Unlock a wallet with the given name and password</span>
 
@@ -134,7 +134,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/unlock&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name_passord</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_import_key"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_import_key">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_import_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name_privKey</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_import_key"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_import_key">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_import_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wallet_name_privKey</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Import a private key to the wallet of the given name</span>
 
@@ -151,7 +151,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/import_key&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wallet_name_privKey</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_list"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_list">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_list"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_list">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        List all wallets</span>
 
@@ -166,7 +166,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/list_wallets&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_list_keys"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_list_keys">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_list_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_list_keys"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_list_keys">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_list_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        List all key pairs across all wallets</span>
 
@@ -181,7 +181,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/list_keys&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_get_public_keys"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_get_public_keys">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_get_public_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_get_public_keys"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_get_public_keys">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_get_public_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        List all public keys across all wallets</span>
 
@@ -196,7 +196,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/get_public_keys&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_set_timeout"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_set_timeout">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_set_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_set_timeout"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_set_timeout">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_set_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set wallet auto lock timeout (in seconds)</span>
 
@@ -212,7 +212,7 @@
         <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/v1/wallet/set_timeout&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="WalletAPI.wallet_sign_trx"><a class="viewcode-back" href="../scripts.html#EOSWalletApi.WalletAPI.wallet_sign_trx">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_sign_trx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction_data</span><span class="p">):</span>
+<div class="viewcode-block" id="WalletAPI.wallet_sign_trx"><a class="viewcode-back" href="../pyeos_client.html#EOSWalletApi.WalletAPI.wallet_sign_trx">[docs]</a>    <span class="k">def</span> <span class="nf">wallet_sign_trx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transaction_data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sign transaction given an array of transaction, require</span>
 <span class="sd">        public keys, and chain id</span>

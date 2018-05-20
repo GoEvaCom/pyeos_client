@@ -1,7 +1,7 @@
-scripts
-=======
+pyeos_client
+============
 
 .. toctree::
    :maxdepth: 4
 
-   scripts
+   pyeos_client
