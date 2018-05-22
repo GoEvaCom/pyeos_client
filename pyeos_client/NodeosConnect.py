@@ -10,7 +10,7 @@
 
 import requests
 
-__version: "0.1.7"
+__version__ = "0.1.7"
 
 
 class RequestHandlerAPI:
