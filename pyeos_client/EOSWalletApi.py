@@ -84,7 +84,7 @@ class WalletAPI:
         path = '/v1/wallet/lock_all'
         return self.session.get(path=path)
 
-    def wallet_unlock(self, wallet_name_passord):
+    def wallet_unlock(self, wallet_name_password):
         """
         Unlock a wallet with the given name and password
 
@@ -94,13 +94,13 @@ class WalletAPI:
 
         :Example:
 
-        >>> WalletAPI.wallet_unlock(wallet_name_passord='["default",
+        >>> WalletAPI.wallet_unlock(wallet_name_password='["default",
                "PW5KFWYKqvt63d4iNvedfDEPVZL227D3RQ1zpVFzuUwhMAJmRAYyX"]')
         {}
 
         """
         path = '/v1/wallet/unlock'
-        return self.session.post(path=path, data=wallet_name_passord)
+        return self.session.post(path=path, data=wallet_name_password)
 
     def wallet_import_key(self, wallet_name_privKey):
         """
