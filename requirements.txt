@@ -10,7 +10,7 @@ MarkupSafe==1.0
 mock==2.0.0
 packaging==17.1
 pbr==4.0.3
-Pygments==2.2.0
+Pygments==2.7.4
 pyparsing==2.2.0
 pytz==2018.4
 requests==2.18.4
